@@ -2,35 +2,43 @@
 
 class Maison
 {
-    private $_view;
+    private $_content;
+    private $_couleur;
+    private $_largeur;
+    private $_longueur;
 
     function __construct($couleur, $largeur, $longueur)
     {
-        $this->_view = "<div style='width: 0;height: 0;border-left: ".($largeur/2)."px solid transparent;border-right: ".($largeur/2)."px solid transparent;border-bottom: ".($largeur/4)."px solid black;'></div>";
-        $this->_view .= '<div style="width: ' . $largeur . 'px;height: ' . $longueur. 'px;border: 2px solid ' . $couleur . ';"></div>';
+        $this->_content = '';
+        $this->_largeur = $largeur;
+        $this->_couleur = $couleur;
+        $this->_longueur = $longueur;
     }
 
-    public function fenetre($hauteur, $largeur, $couleur)
+    public function fenetre($hauteur, $largeur, $couleur, $left, $top): void
     {
-        $fenetre = '<div style="display: flex;flex-direction: row;">';
-        $fenetre .= '<div style="border: 2px solid ' . $couleur . ';width: ' . ( $largeur / 2). 'px;height: ' . $hauteur . 'px;">';
-        $fenetre .= '</div>';
-        $fenetre .= '<div style="border: 2px solid ' . $couleur . ';width: ' . ( $largeur / 2 ). 'px;height: ' . $hauteur . 'px;">';
-        $fenetre .= '</div>';
-        $fenetre .= '</div>';
-
-        return $fenetre;
+        $this->_content .= '<div style="position: absolute;left: ' . $left . 'px;top: ' . $top . 'px;display: flex;flex-direction: row;">';
+        $this->_content .= '<div style="border: 2px solid ' . $couleur . ';width: ' . ( $largeur / 2). 'px;height: ' . $hauteur . 'px;">';
+        $this->_content .= '</div>';
+        $this->_content .= '<div style="border: 2px solid ' . $couleur . ';width: ' . ( $largeur / 2 ). 'px;height: ' . $hauteur . 'px;">';
+        $this->_content .= '</div>';
+        $this->_content .= '</div>';
     }
 
 
     public function getRendu() {
-        return $this->_view;
+        $view = "<div style='width: 0;height: 0;border-left: ".($this->_largeur/2)."px solid transparent;border-right: ".($this->_largeur/2)."px solid transparent;border-bottom: ".($this->_largeur/4)."px solid black;'></div>";
+        $view .= '<div style="position: relative;width: ' . $this->_largeur . 'px;height: ' . $this->_longueur. 'px;border: 2px solid ' . $this->_couleur . ';">' . $this->_content.'</div>';
+
+        return $view;
     }
 
 }
 
 
 $maMaison = new Maison('orange', 300, 150);
+$maMaison->fenetre(100, 250, 'blue', 20, 40);
+
 
 echo $maMaison->getRendu();
 
