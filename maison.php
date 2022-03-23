@@ -2,7 +2,7 @@
 
 class Maison
 {
-    private $_content;
+    public $_content;
     private $_couleur;
     private $_largeur;
     private $_longueur;
@@ -37,15 +37,17 @@ class Maison
 
 
 $maMaison = new Maison('orange', 300, 150);
-$maMaison->fenetre(100, 250, 'blue', 20, 40);
+echo $maMaison->_content;
+
+exit;
+// $maMaison->fenetre(100, 250, 'blue', 20, 40);
 
 
-echo $maMaison->getRendu();
+// echo $maMaison->getRendu();
 
 
 
-
-//echo $maMaison->fenetre(300, 200, '#FF0000');
+// echo $maMaison->fenetre(300, 200, '#FF0000');
 
 
 
