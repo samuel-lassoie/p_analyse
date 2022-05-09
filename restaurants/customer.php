@@ -5,14 +5,16 @@ class Customer
     private string $_id;
     private string $_firstName;
     private string $_lastName;
+    private float $_discount;
     private ?string $_email;
 
 
-    public function __construct(string $firstName, string $lastName, string $email = null)
+    public function __construct(string $firstName, string $lastName, float $discount = 0, string $email = null)
     {
         $this->_id = uniqid('customer_');
         $this->_firstName = $firstName;
         $this->_lastName = $lastName;
+        $this->_discount = $discount;
         $this->_email = $email;
     }
 
@@ -80,6 +82,26 @@ class Customer
     public function set_email($_email)
     {
         $this->_email = $_email;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of _discount
+     */ 
+    public function get_discount()
+    {
+        return $this->_discount;
+    }
+
+    /**
+     * Set the value of _discount
+     *
+     * @return  self
+     */ 
+    public function set_discount($_discount)
+    {
+        $this->_discount = $_discount;
 
         return $this;
     }

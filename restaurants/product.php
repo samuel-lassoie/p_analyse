@@ -36,7 +36,7 @@ class Product
      *
      * @return  self
      */
-    public function set_label($_label)
+    public function set_label(string $_label): self
     {
         $this->_label = $_label;
 
